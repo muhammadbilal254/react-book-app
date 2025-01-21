@@ -10,34 +10,38 @@ import SignUp from "./pages/Auth/Signup";
 import Books from "./pages/Book/Books";
 import BookDetail from "./pages/Book/BookDetail";
 import NotFound from "./pages/NotFound";
+import ThemeContextProvider from "./context/ThemeContext";
 
 function App() {
   return (
-    // Initialize react routing
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contactus" element={<ContactUs />} />
+    // Using Theme Context with useContext Hook
+    <ThemeContextProvider>
+      {/*  Initialize react routing */}
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contactus" element={<ContactUs />} />
 
-        {/* Nested Routing */}
-        <Route path="/auth">
-          <Route index element={<Auth />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
-        </Route>
+          {/* Nested Routing */}
+          <Route path="/auth">
+            <Route index element={<Auth />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="signup" element={<SignUp />} />
+          </Route>
 
-        {/* Dynamic Routing */}
-        <Route path="/books">
-          <Route index element={<Books />} />
-          <Route path=":title" element={<BookDetail />} />
-        </Route>
+          {/* Dynamic Routing */}
+          <Route path="/books">
+            <Route index element={<Books />} />
+            <Route path=":title" element={<BookDetail />} />
+          </Route>
 
-        {/* Page Not Found */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+          {/* Page Not Found */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeContextProvider>
   );
 }
 

@@ -1,13 +1,20 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../context/ThemeContext";
 function Home() {
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
 
   const goToAboutPage = () => navigate("/about");
   const goToBooksPage = () => navigate("/books");
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <section className="bg-blue-700 text-white py-20">
+      <section
+        className={`${
+          theme === "light" ? "bg-blue-700" : "bg-gray-900"
+        } text-white py-20`}
+      >
         <div className="container mx-auto text-center">
           <h1 className="text-5xl font-bold mb-4">Welcome to Our Bookstore</h1>
           <p className="text-xl mb-8">Discover your next great read!</p>
